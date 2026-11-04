@@ -2,8 +2,10 @@
 
 Reusable agent skills for practical workflows.
 
-## Excalidraw workbench
+| Skill | Description |
+| --- | --- |
+| [excalidraw-workbench](skills/excalidraw-workbench/SKILL.md) | Create, review, save, and synchronize editable Excalidraw diagrams. |
 
-[excalidraw-workbench](skills/excalidraw-workbench/SKILL.md) guides an agent through creating, checking, saving, and synchronizing editable Excalidraw diagrams.
+## Installation
 
-Install it with a compatible skill installer by selecting `skills/excalidraw-workbench`, or copy that folder into your agent's skills directory. The skill uses an available Excalidraw MCP or CLI and links to the upstream project for setup.
+Use a compatible skill installer to select a skill under `skills/`, or copy the skill folder into your agent's skills directory. Follow each skill's instructions for any required tools or setup.
