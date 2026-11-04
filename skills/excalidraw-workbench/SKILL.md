@@ -1,27 +1,27 @@
 ---
 name: excalidraw-workbench
-description: Create or revise editable Excalidraw diagrams, including architecture, workflows, and design discussions. Use when the user requests an Excalidraw canvas or editable Excalidraw deliverable.
+description: 아키텍처, 업무 흐름, 설계 논의 등을 편집 가능한 Excalidraw 도면으로 작성하거나 수정한다. Excalidraw 캔버스 또는 편집 가능한 도면을 요청할 때 사용한다.
 ---
 
-# Excalidraw workbench
+# Excalidraw 도면 작업
 
-Create diagrams that make the requested relationships and decisions easy to follow. Separate source-confirmed behavior, user-provided assumptions, proposals, and unknowns using labels as well as color. Include concise, traceable sources when diagramming an existing system; do not treat source inspection as runtime verification.
+요청한 관계와 결정을 이해하기 쉽게 시각화한다. 소스에서 확인한 동작, 사용자가 제공한 가정, 제안, 미확인 사항을 색상과 텍스트로 구분한다. 기존 시스템을 다룰 때는 추적할 수 있는 근거를 간결하게 남기며, 소스 확인을 운영 검증으로 표현하지 않는다.
 
-## Setup
+## 실행 환경
 
-Prefer an available Excalidraw MCP or CLI connection. Inspect the existing scene before changing it. If a compatible tool is unavailable, consult the official project instructions at https://github.com/yctimlin/mcp_excalidraw. Its `mcp-excalidraw-server` package offers a local canvas and CLI; check its current prerequisites and installation instructions before setup. Keep the server bound to loopback unless the user explicitly requests network access and its security implications are understood. Do not change account, server, or agent configuration without authorization.
+사용 가능한 Excalidraw MCP 또는 CLI를 우선 사용하고, 변경 전에 기존 캔버스를 확인한다. 호환되는 도구가 없으면 [원본 프로젝트](https://github.com/yctimlin/mcp_excalidraw)의 현재 설치 방법과 필수 조건을 확인한다. `mcp-excalidraw-server` 패키지는 로컬 캔버스와 CLI를 제공한다. 사용자가 네트워크 접근을 명시적으로 요청하고 그 영향을 이해한 경우가 아니면 서버를 로컬 루프백에만 바인딩한다. 승인 없이 계정, 서버 또는 에이전트 설정을 변경하지 않는다.
 
-## Draw and verify
+## 작성과 검증
 
-1. Establish the scope and audience. For a process, show the trigger, sequence, meaningful decisions, outcomes, and relevant boundaries. For architecture or design, show the relationships supported by the evidence and label unresolved connections.
-2. Preserve existing work. Do not clear or replace a shared canvas, overwrite an unrelated file, or import a scene in replace mode without an explicit request. When appending, leave a clear gap and make the new section identifiable.
-3. Bind arrows to shapes where supported and label non-obvious branches. Allow generous spacing and text padding. When changing font size, resize or reflow the entire affected layout, including bound labels, decision shapes, arrows, and captions; avoid relying on automatic wrapping alone.
-4. Inspect a rendered screenshot at a readable scale. Check text clipping, line breaks, overlapping shapes, arrow endpoints, branch labels, and whether the meaning matches the source. Correct and recheck. Rendering and font metrics can differ across systems, especially for non-Latin text; report any unverified client-specific behavior.
+1. 요청 범위와 대상을 확인한다. 프로세스는 시작 조건, 순서, 주요 분기, 결과와 관련 경계를 표시한다. 아키텍처나 설계는 근거가 있는 관계를 표시하고 확인되지 않은 연결은 미확인으로 표시한다.
+2. 기존 작업을 보존한다. 명시적 요청 없이 공유 캔버스를 비우거나 교체하지 않고, 관련 없는 파일을 덮어쓰거나 장면을 replace 모드로 가져오지 않는다. 추가할 때는 충분히 떨어진 영역에 구분하여 배치한다.
+3. 지원되는 경우 화살표를 도형에 연결하고 의미가 불분명한 분기에는 라벨을 붙인다. 도형 사이 간격과 텍스트 안쪽 여백을 충분히 둔다. 글자 크기를 바꾸면 연결된 라벨, 분기 도형, 화살표, 설명을 포함해 해당 배치 전체의 크기와 줄바꿈을 조정한다. 자동 줄바꿈만으로 판단하지 않는다.
+4. 읽을 수 있는 크기의 렌더링 화면을 확인한다. 글자 잘림, 줄바꿈, 도형 겹침, 화살표 연결점, 분기 라벨, 근거와 도면의 의미가 일치하는지 점검하고 필요한 부분을 수정한 뒤 다시 확인한다. 한글 등 비라틴 문자는 시스템별 글꼴과 렌더링 차이가 있을 수 있으므로 확인하지 못한 환경은 보고한다.
 
-## Save and synchronize
+## 저장과 동기화
 
-- When saving is requested, export an editable `.excalidraw` file and any requested images. Verify that the exported scene includes all intended elements and their bindings, excludes unrelated canvas content, and opens or renders as expected. Avoid treating PNG as the editable source.
-- Canvas state, exported files, Git commits, and remote synchronization are separate. Do not assume automatic sync. Before an authorized remote update, confirm the repository, visibility, target branch, changed files, and absence of credentials or unintended private content; follow the user's applicable Git and security rules. Preserve unrelated files and verify the remote result after pushing.
-- Never publish a private diagram, configure a public listener, or overwrite existing remote work merely because this skill is invoked.
+- 저장 요청이 있으면 편집 가능한 `.excalidraw` 파일과 요청된 이미지를 내보낸다. 필요한 요소와 연결이 포함되고 다른 작업의 내용은 제외됐는지, 내보낸 파일이 열리거나 렌더링되는지 확인한다. PNG는 편집 가능한 원본을 대신하지 않는다.
+- 캔버스 상태, 내보낸 파일, Git 커밋, 원격 동기화는 각각 별개다. 자동 동기화를 가정하지 않는다. 승인된 원격 반영 전에는 저장소, 공개 범위, 대상 브랜치, 변경 파일, 자격 증명과 의도하지 않은 비공개 정보의 포함 여부를 확인하고 사용자의 Git / 보안 규칙을 따른다. 관련 없는 파일을 보존하고 push 후 원격 결과를 확인한다.
+- 이 스킬의 호출만으로 비공개 도면을 공개하거나 서버를 외부에 노출하거나 기존 원격 작업을 덮어쓰지 않는다.
 
-Report where the user can access the result, what evidence supports it, what was actually verified, and whether it was saved or synchronized.
+결과에 접근하는 방법, 근거, 실제 검증 내용, 저장과 동기화 여부를 보고한다.
